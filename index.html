@@ -45,30 +45,36 @@
   }
 
   
-
+  a:not(.ui.button) {
+    color: seagreen !important;
+  }
   
 
   
 
+  
+  body.default {
+    
+    background-color: #f7f7f7;
+    
+
+    
+  }
+  
+
+  
+  body.dark {
+    
+    background-color: black;
+    
+
+    
+  }
   
 </style>
 
 
      
-
-    
-    
-    
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-195702815-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
     
   </head>
@@ -82,6 +88,10 @@ if (!doNotTrack) {
   </div>
   <div class="item">
     <i class="large link home icon" title="Home" onclick="window.location.href = 'https:\/\/garyhsu123.github.io'"></i>
+  </div>
+  
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
   </div>
   
   
@@ -384,7 +394,7 @@ if (!doNotTrack) {
 
     <script>
   window.defaultDark =  null 
-  window.backgroundDark =  null 
+  window.backgroundDark = "black"
   window.backgroundImageDark =  null 
   window.darkNav =  null 
   window.hasTwitterEmbed =  null 
@@ -430,6 +440,19 @@ if (!doNotTrack) {
     
 
     
+
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-195702815-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
     
   </body>

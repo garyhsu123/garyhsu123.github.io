@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Programming Language on YC&#39;s blog</title>
+    <link>https://garyhsu123.github.io/categories/programming-language/</link>
+    <description>Recent content in Programming Language on YC&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Tue, 27 Apr 2021 19:49:45 +0800</lastBuildDate><atom:link href="https://garyhsu123.github.io/categories/programming-language/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Points%20amd%20Pixels</title>
+      <link>https://garyhsu123.github.io/posts/points-and-pixels/</link>
+      <pubDate>Tue, 27 Apr 2021 19:49:45 +0800</pubDate>
+      
+      <guid>https://garyhsu123.github.io/posts/points-and-pixels/</guid>
+      <description>&lt;pre&gt;&lt;code&gt;在開發iOS時，常常會需要在Inspector上設定view的大小，例如有一個view的大小 `Width是300`、`Height是400`，那麼這個300和400的單位是什麼呢？🧐
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;point&#34;&gt;Point&lt;/h2&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;code&gt;Point&lt;/code&gt;是Apple自訂的衡量單位，就上述的例子來說，300和400的單位就是&lt;code&gt;Point&lt;/code&gt;，我們知道&lt;code&gt;Pixel&lt;/code&gt;是顯示器上顯示的最小單位，那底&lt;code&gt;Point&lt;/code&gt;和&lt;code&gt;Pixel&lt;/code&gt;有什麼不一樣呢？&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;dpi-or-ppi&#34;&gt;DPI or PPI&lt;/h2&gt;
+&lt;hr&gt;
+&lt;p&gt;在講&lt;code&gt;Point&lt;/code&gt;前我們必須先提到&lt;code&gt;DPI&lt;/code&gt;，&lt;code&gt;DPI&lt;/code&gt;是（Dots Per Inch)的縮寫，而PPI是（Pixel per Inch)的縮寫，意思相同，都代表一英吋的長度(2.54cm)所含的pixel數目。&lt;br&gt;
+&lt;!-- raw HTML omitted --&gt;
+初代的iPhone&lt;/p&gt;
+&lt;h2 id=&#34;point-and-pixel&#34;&gt;Point and Pixel&lt;/h2&gt;
+&lt;hr&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;hr&gt;
+&lt;p&gt;Cut out summary from your post content here.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.fluidui.com/designing-for-mobile-101-pixels-points-and-resolutions/#:~:text=On%20the%20iPhone%2C%201%20point,down%2C%20or%204%20total%20pixels.&#34;&gt;Mobile design 101: pixels, points and resolutions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

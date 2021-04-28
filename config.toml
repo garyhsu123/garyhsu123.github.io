@@ -6,7 +6,7 @@ theme = "dream"
 
 # copyright = ""
 
-# googleAnalytics = ""
+googleAnalytics = "UA-195702815-1"
 
 disqusShortname = "garyhsu123"
 

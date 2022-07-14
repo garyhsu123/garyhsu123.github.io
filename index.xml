@@ -6,7 +6,35 @@
     <description>Recent content on YC&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Mon, 26 Apr 2021 21:28:42 +0800</lastBuildDate><atom:link href="https://garyhsu123.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 27 Apr 2021 19:49:45 +0800</lastBuildDate><atom:link href="https://garyhsu123.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Points and Pixels</title>
+      <link>https://garyhsu123.github.io/posts/points-and-pixels/</link>
+      <pubDate>Tue, 27 Apr 2021 19:49:45 +0800</pubDate>
+      
+      <guid>https://garyhsu123.github.io/posts/points-and-pixels/</guid>
+      <description>&lt;p&gt;在開發iOS時，常常會需要在Inspector上設定view的大小，例如有一個view的大小 &lt;code&gt;Width是300&lt;/code&gt;、&lt;code&gt;Height是400&lt;/code&gt;，那麼這個300和400的單位是什麼呢？🧐&lt;/p&gt;
+&lt;h2 id=&#34;what-is-point&#34;&gt;What is &lt;code&gt;Point&lt;/code&gt;&lt;/h2&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;code&gt;Point&lt;/code&gt;是Apple自訂的衡量單位，就上述的例子來說，300和400的單位就是&lt;code&gt;Point&lt;/code&gt;，我們知道&lt;code&gt;Pixel&lt;/code&gt;是顯示器上顯示的最小單位，那底&lt;code&gt;Point&lt;/code&gt;和&lt;code&gt;Pixel&lt;/code&gt;有什麼不一樣呢？&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;what-is-dpi-ppi-&#34;&gt;What is &lt;code&gt;DPI&lt;/code&gt;, &lt;code&gt;PPI&lt;/code&gt; ?&lt;/h2&gt;
+&lt;hr&gt;
+&lt;p&gt;在講&lt;code&gt;Point&lt;/code&gt;前我們必須先提到&lt;code&gt;DPI&lt;/code&gt;，&lt;code&gt;DPI&lt;/code&gt;是（Dots Per Inch)的縮寫，而PPI是（Pixel per Inch)的縮寫，意思相同，都代表一英吋的長度(2.54cm)所含的pixel數目。&lt;br&gt;
+&lt;!-- raw HTML omitted --&gt;
+如果你是蘋果的用戶，那你對&lt;code&gt;Retina&lt;/code&gt;這個字一定不陌生，他是頻果公司高解析度顯示器的一個系列，既然說是高解析度，那究竟是多高呢？&lt;code&gt;Retina&lt;/code&gt;的螢幕DPI是&lt;code&gt;326&lt;/code&gt;，而在&lt;code&gt;Retina&lt;/code&gt;被推出來之前，蘋果公司的顯示器DPI才&lt;code&gt;163&lt;/code&gt;，而在DPI為&lt;code&gt;163&lt;/code&gt;的device上，正好1個Point的大小相等於一個Pixel的大小，那麼你大概可以知道1個Point大概多大了吧
+!&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;一個Point的邊長 = 2.54 cm / 163 ≈ 0.16 cm&lt;/code&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;point-and-pixel&#34;&gt;Point and Pixel&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.fluidui.com/content/images/2015/09/pixel-comparison.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;最左邊為163 DPI，中間是326 DPI，最右邊則為401 DPI&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.fluidui.com/designing-for-mobile-101-pixels-points-and-resolutions/#:~:text=On%20the%20iPhone%2C%201%20point,down%2C%20or%204%20total%20pixels.&#34;&gt;Mobile design 101: pixels, points and resolutions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
     <item>
       <title>新店</title>
       <link>https://garyhsu123.github.io/posts/%E6%96%B0%E5%BA%97/</link>

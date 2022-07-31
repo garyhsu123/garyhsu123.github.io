@@ -5,32 +5,59 @@
     <link>https://garyhsu123.github.io/tags/</link>
     <description>Recent content in Tags on YC&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-tw</language>
-    <lastBuildDate>Tue, 27 Apr 2021 19:49:45 +0800</lastBuildDate><atom:link href="https://garyhsu123.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Sat, 03 Apr 2021 23:29:21 +0530</lastBuildDate><atom:link href="https://garyhsu123.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>iOS</title>
-      <link>https://garyhsu123.github.io/tags/ios/</link>
-      <pubDate>Tue, 27 Apr 2021 19:49:45 +0800</pubDate>
+      <title>example</title>
+      <link>https://garyhsu123.github.io/tags/example/</link>
+      <pubDate>Sat, 03 Apr 2021 23:29:21 +0530</pubDate>
       
-      <guid>https://garyhsu123.github.io/tags/ios/</guid>
+      <guid>https://garyhsu123.github.io/tags/example/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Swift</title>
-      <link>https://garyhsu123.github.io/tags/swift/</link>
-      <pubDate>Tue, 27 Apr 2021 19:49:45 +0800</pubDate>
+      <title>Markdown syntax</title>
+      <link>https://garyhsu123.github.io/tags/markdown-syntax/</link>
+      <pubDate>Sat, 03 Apr 2021 23:29:21 +0530</pubDate>
       
-      <guid>https://garyhsu123.github.io/tags/swift/</guid>
+      <guid>https://garyhsu123.github.io/tags/markdown-syntax/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Mood</title>
-      <link>https://garyhsu123.github.io/tags/mood/</link>
-      <pubDate>Mon, 26 Apr 2021 21:28:42 +0800</pubDate>
+      <title>Sample</title>
+      <link>https://garyhsu123.github.io/tags/sample/</link>
+      <pubDate>Sat, 03 Apr 2021 23:29:21 +0530</pubDate>
       
-      <guid>https://garyhsu123.github.io/tags/mood/</guid>
+      <guid>https://garyhsu123.github.io/tags/sample/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Emoji support</title>
+      <link>https://garyhsu123.github.io/tags/emoji-support/</link>
+      <pubDate>Sat, 03 Apr 2021 22:53:58 +0530</pubDate>
+      
+      <guid>https://garyhsu123.github.io/tags/emoji-support/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Placeholder text</title>
+      <link>https://garyhsu123.github.io/tags/placeholder-text/</link>
+      <pubDate>Sat, 03 Apr 2021 22:41:10 +0530</pubDate>
+      
+      <guid>https://garyhsu123.github.io/tags/placeholder-text/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rich content</title>
+      <link>https://garyhsu123.github.io/tags/rich-content/</link>
+      <pubDate>Sat, 03 Apr 2021 19:53:33 +0530</pubDate>
+      
+      <guid>https://garyhsu123.github.io/tags/rich-content/</guid>
       <description></description>
     </item>
     

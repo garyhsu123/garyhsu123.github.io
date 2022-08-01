@@ -6,6 +6,8 @@ theme: hugo-profile
 Paginate: 3
 disqusShortname: garyhsu123
 googleAnalytics: UA-195702815-1
+ignoreErrors: 
+  - "error-remote-getjson"
 
 markup:
   goldmark:

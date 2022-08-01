@@ -86,7 +86,7 @@ params:
   navbar:
   #   align: mx-auto # Left: ms-auto | center: mx-auto | right: me-auto | Default: ms-auto
     brandLogo: "/logo.png" # Logo for the brand | default is the favicon variable
-    brandName: "Yu-Chun Hsu" # Brand name for the brand | default is the title variable
+    brandName: "ttttttttttttttt" # Brand name for the brand | default is the title variable
 
     menus:
   #     disableAbout: true

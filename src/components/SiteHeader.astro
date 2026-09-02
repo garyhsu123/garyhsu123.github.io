@@ -1,0 +1,43 @@
+---
+import { SITE_TITLE, withBase } from "../config/site";
+
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/blog", label: "Blog" },
+];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+---
+
+<header class="site-header">
+  <div class="shell site-header__inner">
+    <a class="site-header__brand" href={withBase("/")}>
+      <span class="site-header__name">{SITE_TITLE}</span>
+      <span class="site-header__tag">Notebook</span>
+    </a>
+
+    <nav aria-label="Primary">
+      <ul class="site-nav">
+        {
+          navItems.map((item) => {
+            const href = withBase(item.href);
+            const normalizedHref = href.replace(/\/$/, "") || "/";
+            const isActive =
+              item.href === "/"
+                ? currentPath === normalizedHref
+                : currentPath.startsWith(normalizedHref);
+
+            return (
+              <li>
+                <a class:list={[{ "is-active": isActive }]} href={href}>
+                  {item.label}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

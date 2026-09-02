@@ -1,0 +1,153 @@
+---
+import { getEntry } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+
+const profile = await getEntry("about", "profile");
+
+if (!profile) {
+  throw new Error("About profile entry is required.");
+}
+
+const sections = [
+  { id: "intro", label: "Intro" },
+  { id: "experience", label: "Experience" },
+  { id: "projects", label: "Projects" },
+  { id: "education", label: "Education" },
+  { id: "skills", label: "Skills" },
+  { id: "links", label: "Links" },
+];
+---
+
+<BaseLayout description="About Gary Hsu, selected work, experience, education, and skills." path="/about" title="About">
+  <section class="shell page-hero">
+    <p class="eyebrow">About</p>
+    <h1>{profile.data.name}</h1>
+    <p class="page-hero__summary">{profile.data.intro.summary}</p>
+  </section>
+
+  <section class="shell jump-links" aria-label="About sections">
+    <ul>
+      {
+        sections.map((section) => (
+          <li>
+            <a href={`#${section.id}`}>{section.label}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="shell prose-grid">
+    <section id="intro">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Intro</p>
+          <h2>{profile.data.role}</h2>
+        </div>
+      </div>
+      <p>{profile.data.intro.summary}</p>
+      {profile.data.intro.location ? <p class="muted">Based in {profile.data.intro.location}.</p> : null}
+    </section>
+
+    <section id="experience">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Experience</p>
+          <h2>Recent focus</h2>
+        </div>
+      </div>
+      <div class="stack-list">
+        {
+          profile.data.experience.map((item) => (
+            <article class="timeline-item">
+              <div class="timeline-item__header">
+                <div>
+                  <h3>{item.role}</h3>
+                  <p>{item.company}</p>
+                </div>
+                <p class="timeline-item__period">{item.period}</p>
+              </div>
+              <p>{item.summary}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Projects</p>
+          <h2>Curated work</h2>
+        </div>
+      </div>
+      <div class="project-grid">
+        {profile.data.projects.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Education</p>
+          <h2>Background</h2>
+        </div>
+      </div>
+      <div class="stack-list">
+        {
+          profile.data.education.map((item) => (
+            <article class="timeline-item">
+              <div class="timeline-item__header">
+                <div>
+                  <h3>{item.program}</h3>
+                  <p>{item.school}</p>
+                </div>
+                <p class="timeline-item__period">{item.period}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Skills</p>
+          <h2>Working set</h2>
+        </div>
+      </div>
+      <div class="skills-grid">
+        {
+          profile.data.skills.map((group) => (
+            <article class="skill-panel">
+              <h3>{group.category}</h3>
+              <ul>
+                {group.items.map((item) => <li>{item}</li>)}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section id="links">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Links</p>
+          <h2>Elsewhere</h2>
+        </div>
+      </div>
+      <div class="social-list">
+        {
+          profile.data.socialLinks.map((link) => (
+            <a href={link.url} rel="noreferrer" target="_blank">
+              {link.label}
+            </a>
+          ))
+        }
+      </div>
+    </section>
+  </section>
+</BaseLayout>

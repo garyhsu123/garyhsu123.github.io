@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { withBase } from "../config/site";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+  compact?: boolean;
+}
+
+const { post, compact = false } = Astro.props;
+---
+
+<article class:list={["post-list-item", { "post-list-item--compact": compact }]}>
+  <p class="post-list-item__meta">
+    <time datetime={post.data.publishDate.toISOString()}>
+      {post.data.publishDate.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })}
+    </time>
+  </p>
+
+  <h2 class="post-list-item__title">
+    <a href={withBase(`/blog/${post.id}/`)}>{post.data.title}</a>
+  </h2>
+
+  <p class:list={["post-list-item__summary", { "u-line-clamp": compact }]}>
+    {post.data.summary}
+  </p>
+</article>

@@ -1,0 +1,50 @@
+---
+import "../styles/global.css";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_TAGLINE, absoluteUrl } from "../config/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  path?: string;
+  ogType?: "article" | "website";
+}
+
+const {
+  title = SITE_TITLE,
+  description = SITE_DESCRIPTION,
+  path = "/",
+  ogType = "website",
+} = Astro.props;
+
+const pageTitle = title === SITE_TITLE ? `${SITE_TITLE} | ${SITE_TAGLINE}` : `${title} | ${SITE_TITLE}`;
+const canonicalUrl = absoluteUrl(path);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>{pageTitle}</title>
+    <meta content={description} name="description" />
+    <link href={canonicalUrl} rel="canonical" />
+    <meta content={pageTitle} property="og:title" />
+    <meta content={description} property="og:description" />
+    <meta content={canonicalUrl} property="og:url" />
+    <meta content={ogType} property="og:type" />
+    <meta content="summary" name="twitter:card" />
+    <meta content={pageTitle} name="twitter:title" />
+    <meta content={description} name="twitter:description" />
+  </head>
+  <body>
+    <div class="site-frame">
+      <SiteHeader />
+      <main>
+        <slot />
+      </main>
+      <SiteFooter />
+    </div>
+  </body>
+</html>

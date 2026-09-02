@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostListItem from "../../components/PostListItem.astro";
+import { getPublishedPosts } from "../../utils/content";
+
+const posts = await getPublishedPosts();
+---
+
+<BaseLayout description="Technical writing archive and practical engineering notes." path="/blog" title="Blog">
+  <section class="shell page-hero">
+    <p class="eyebrow">Blog</p>
+    <h1>Articles and technical notes</h1>
+    <p class="page-hero__summary">
+      A chronological archive of practical writeups, implementation tradeoffs, and lessons from building.
+    </p>
+  </section>
+
+  <section class="shell section-stack">
+    {
+      posts.length > 0 ? (
+        posts.map((post) => <PostListItem post={post} />)
+      ) : (
+        <article class="empty-panel">
+          <p class="eyebrow">No posts yet</p>
+          <h2>The archive is still starting.</h2>
+          <p>
+            The writing pipeline is in place, but no published articles are available yet. Check back soon for new
+            notes.
+          </p>
+        </article>
+      )
+    }
+  </section>
+</BaseLayout>

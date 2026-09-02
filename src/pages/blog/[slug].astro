@@ -1,0 +1,87 @@
+---
+import { render, type CollectionEntry, getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { withBase } from "../../config/site";
+import { getPublishedPosts, isPublishedPost } from "../../utils/content";
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const showToc = headings.length >= 3;
+const allPosts = await getCollection("blog");
+const posts = allPosts.filter(isPublishedPost).sort((left, right) => {
+  return right.data.publishDate.getTime() - left.data.publishDate.getTime();
+});
+const currentIndex = posts.findIndex((item) => item.id === post.id);
+const previousPost = posts[currentIndex + 1];
+const nextPost = posts[currentIndex - 1];
+---
+
+<BaseLayout
+  description={post.data.summary}
+  ogType="article"
+  path={`/blog/${post.id}/`}
+  title={post.data.title}
+>
+  <section class="shell article-shell">
+    <div class="article-shell__header">
+      <p class="eyebrow">Article</p>
+      <h1>{post.data.title}</h1>
+      <p class="article-shell__meta">
+        <time datetime={post.data.publishDate.toISOString()}>
+          {post.data.publishDate.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </time>
+      </p>
+      <p class="article-shell__summary">{post.data.summary}</p>
+    </div>
+
+    <div class="article-layout">
+      {
+        showToc ? (
+          <aside class="article-toc">
+            <p class="article-toc__title">On this page</p>
+            <ul>
+              {headings.map((heading) => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}
+            </ul>
+          </aside>
+        ) : null
+      }
+
+      <article class="article-prose">
+        <Content />
+      </article>
+    </div>
+
+    <section class="author-panel">
+      <div>
+        <p class="eyebrow">Author context</p>
+        <h2>Why this site exists</h2>
+      </div>
+      <p>
+        I use writing to clarify technical tradeoffs, document implementation thinking, and share practical ideas that
+        other builders can reuse.
+      </p>
+      <a class="text-link" href={withBase("/about")}>More about me</a>
+    </section>
+
+    <nav class="article-pagination" aria-label="Article navigation">
+      {previousPost ? <a href={withBase(`/blog/${previousPost.id}/`)}>← {previousPost.data.title}</a> : <span />}
+      {nextPost ? <a href={withBase(`/blog/${nextPost.id}/`)}>{nextPost.data.title} →</a> : <span />}
+    </nav>
+  </section>
+</BaseLayout>

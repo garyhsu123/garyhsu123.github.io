@@ -1,0 +1,29 @@
+---
+import { withBase } from "../config/site";
+import { getEntry } from "astro:content";
+
+const profile = await getEntry("about", "profile");
+const socialLinks = profile?.data.socialLinks ?? [];
+---
+
+<footer class="site-footer">
+  <div class="shell site-footer__inner">
+    <div>
+      <p class="site-footer__title">Write clearly. Ship deliberately.</p>
+      <p class="site-footer__body">
+        A small personal site for technical writing, selected work, and the reasoning behind implementation decisions.
+      </p>
+    </div>
+
+    <div class="site-footer__links">
+      <a href={withBase("/blog")}>Browse all posts</a>
+      {
+        socialLinks.map((link) => (
+          <a href={link.url} rel="noreferrer" target="_blank">
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</footer>

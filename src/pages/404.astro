@@ -1,0 +1,19 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../config/site";
+---
+
+<BaseLayout description="Page not found." path="/404" title="404">
+  <section class="shell not-found">
+    <p class="eyebrow">404</p>
+    <h1>That page is not here.</h1>
+    <p>
+      The link may be outdated, or the page may have moved. The fastest recovery path is to return to the homepage or
+      browse the blog archive.
+    </p>
+    <div class="hero__actions">
+      <a class="button button--primary" href={withBase("/")}>Go home</a>
+      <a class="button button--subtle" href={withBase("/blog")}>Browse posts</a>
+    </div>
+  </section>
+</BaseLayout>

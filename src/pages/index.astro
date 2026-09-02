@@ -1,0 +1,75 @@
+---
+import { getEntry } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PostListItem from "../components/PostListItem.astro";
+import { SITE_DESCRIPTION, SITE_TAGLINE, withBase } from "../config/site";
+import { getLatestPost } from "../utils/content";
+
+const latestPost = await getLatestPost();
+const profile = await getEntry("about", "profile");
+const intro = profile?.data.intro;
+---
+
+<BaseLayout description={SITE_DESCRIPTION} path="/" title="Home">
+  <section class="hero shell">
+    <p class="eyebrow">Tech notes by Gary Hsu</p>
+    <h1>{intro?.headline ?? SITE_TAGLINE}</h1>
+    <p class="hero__summary">
+      {intro?.summary ??
+        "A small site for practical software writing, implementation tradeoffs, and lessons from building."}
+    </p>
+    <div class="hero__actions">
+      <a class="button button--primary" href={withBase("/blog")}>Read the blog</a>
+      <a class="button button--subtle" href={withBase("/about")}>About me</a>
+    </div>
+  </section>
+
+  <section class="shell section-stack">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Latest writing</p>
+        <h2>Start with the newest article</h2>
+      </div>
+      <a class="text-link" href={withBase("/blog")}>See all posts</a>
+    </div>
+
+    {
+      latestPost ? (
+        <PostListItem compact={true} post={latestPost} />
+      ) : (
+        <article class="empty-panel">
+          <p class="eyebrow">Coming soon</p>
+          <h3>Articles are on the way.</h3>
+          <p>
+            The site is live, but the writing archive is still growing. Check back soon for practical notes on
+            technical decisions, implementation tradeoffs, and lessons from building.
+          </p>
+        </article>
+      )
+    }
+  </section>
+
+  <section class="shell section-stack">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Short about</p>
+        <h2>Compact context behind the writing</h2>
+      </div>
+      <a class="text-link" href={withBase("/about")}>View full profile</a>
+    </div>
+
+    <div class="about-teaser">
+      <div>
+        <p>
+          {intro?.summary ??
+            "I write to clarify engineering choices, document what works, and share practical lessons that others can reuse."}
+        </p>
+      </div>
+      <ul class="about-teaser__facts">
+        <li>{profile?.data.role ?? "Software Engineer"}</li>
+        {intro?.location ? <li>{intro.location}</li> : null}
+        <li>Blog-first personal site</li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

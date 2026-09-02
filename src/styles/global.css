@@ -21,6 +21,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -30,6 +31,7 @@ body {
   color: var(--text);
   font-family: var(--font-sans);
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 a {
@@ -49,6 +51,7 @@ main {
 
 .site-frame {
   min-height: 100vh;
+  overflow-x: clip;
 }
 
 .shell {
@@ -147,6 +150,8 @@ main {
 .hero h1 {
   max-width: none;
   font-size: clamp(2.35rem, 4.15vw, 3.45rem);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .page-hero h1,

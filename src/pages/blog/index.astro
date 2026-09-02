@@ -18,7 +18,9 @@ const posts = await getPublishedPosts();
   <section class="shell section-stack">
     {
       posts.length > 0 ? (
-        <div class="post-list">{posts.map((post) => <PostListItem post={post} variant="list" />)}</div>
+        <div class="post-list">
+          {posts.map((post) => <PostListItem post={post} showSummary={true} variant="list" />)}
+        </div>
       ) : (
         <article class="empty-panel">
           <p>The writing pipeline is in place, but no published articles are available yet. Check back soon.</p>

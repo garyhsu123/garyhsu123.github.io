@@ -332,6 +332,19 @@ main {
 .post-list-item--feature {
   padding: var(--space-5);
   border-radius: 0.75rem;
+  transition: border-color 160ms ease;
+}
+
+.post-list-item--feature:has(.post-list-item__content-link:hover),
+.post-list-item--feature:has(.post-list-item__cta:hover),
+.post-list-item--feature:focus-within {
+  border-color: var(--accent);
+}
+
+.post-list-item--feature:has(.post-list-item__content-link:hover) .post-list-item__title,
+.post-list-item--feature:has(.post-list-item__cta:hover) .post-list-item__title,
+.post-list-item--feature:focus-within .post-list-item__title {
+  color: var(--accent);
 }
 
 .post-list-item--feature .post-list-item__title,
@@ -976,6 +989,10 @@ main {
   }
 
   .post-list-item__title {
+    transition: none;
+  }
+
+  .post-list-item--feature {
     transition: none;
   }
 }

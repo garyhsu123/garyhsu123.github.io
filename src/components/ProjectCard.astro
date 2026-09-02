@@ -7,8 +7,6 @@ interface LinkItem {
 interface Project {
   title: string;
   context: string;
-  image?: string;
-  accent?: string;
   links: LinkItem[];
 }
 
@@ -17,29 +15,21 @@ interface Props {
 }
 
 const { project } = Astro.props;
-const initials = project.title
-  .split(" ")
-  .slice(0, 2)
-  .map((part) => part[0]?.toUpperCase() ?? "")
-  .join("");
 ---
 
-<article class:list={["project-card", `project-card--${project.accent ?? "slate"}`]}>
-  <div class="project-card__visual" aria-hidden="true">
-    {project.image ? <img alt="" loading="lazy" src={project.image} /> : <span>{initials}</span>}
-  </div>
-
-  <div class="project-card__body">
-    <h3>{project.title}</h3>
-    <p>{project.context}</p>
-    <div class="project-card__links">
-      {
-        project.links.map((link) => (
-          <a href={link.url} rel="noreferrer" target="_blank">
-            {link.label}
-          </a>
-        ))
-      }
-    </div>
+<article class="project-card">
+  <h3 class="project-card__title">
+    <span class="project-card__prompt" aria-hidden="true">&gt;</span>
+    {project.title}
+  </h3>
+  <p>{project.context}</p>
+  <div class="project-card__links">
+    {
+      project.links.map((link) => (
+        <a href={link.url} rel="noreferrer" target="_blank">
+          {link.label} ↗
+        </a>
+      ))
+    }
   </div>
 </article>

@@ -365,7 +365,6 @@ main {
 }
 
 .stack-list,
-.skills-grid,
 .project-grid,
 .social-list {
   display: grid;
@@ -390,7 +389,6 @@ main {
 }
 
 .timeline-item h3,
-.skill-panel h3,
 .project-card h3,
 .author-panel h2 {
   margin: 0;
@@ -398,51 +396,38 @@ main {
 }
 
 .timeline-item p,
-.skill-panel li,
 .project-card p {
   color: var(--text-muted);
 }
 
-.skills-grid {
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-}
-
-.skill-panel ul {
-  display: grid;
-  gap: 0.65rem;
-  margin: 1rem 0 0;
-  padding-left: 1rem;
-}
-
 .project-grid {
   grid-template-columns: 1fr;
+  gap: 1.5rem;
 }
 
 .project-card {
-  display: grid;
-  grid-template-columns: 72px minmax(0, 1fr);
-  gap: 1rem;
-  padding: 1.15rem 0;
-  border-bottom: 1px solid var(--border);
+  padding: 1.45rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--surface);
 }
 
-.project-card__visual {
-  display: grid;
-  place-items: center;
-  width: 72px;
-  height: 72px;
-  border-radius: 0.75rem;
-  font-family: var(--font-serif);
-  font-size: 1.35rem;
-  letter-spacing: -0.04em;
+.project-card__title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  font-size: 1rem;
+  line-height: 1.2;
 }
 
-.project-card__body {
-  padding: 0;
+.project-card__prompt {
+  color: var(--accent);
+  font-weight: 600;
 }
 
-.project-card__body p {
-  margin: 0.7rem 0 1rem;
+.project-card p {
+  max-width: 58ch;
+  margin: 1rem 0 1.15rem;
 }
 
 .project-card__links,
@@ -456,21 +441,9 @@ main {
 .project-card__links a,
 .social-list a,
 .site-footer__column a {
-  color: var(--accent);
+  color: var(--text-muted);
   font-weight: 500;
   text-decoration: none;
-}
-
-.project-card--sand .project-card__visual {
-  background: var(--accent-sand);
-}
-
-.project-card--sage .project-card__visual {
-  background: var(--accent-sage);
-}
-
-.project-card--slate .project-card__visual {
-  background: var(--accent-slate);
 }
 
 .article-shell {
@@ -633,6 +606,7 @@ main {
 .about-sidebar {
   position: sticky;
   top: 7rem;
+  height: fit-content;
   align-self: start;
 }
 
@@ -704,6 +678,25 @@ main {
 
 .timeline-item--about .timeline-item__body h3 {
   font-size: 1rem;
+}
+
+.skills-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  max-width: 44rem;
+}
+
+.skill-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 0.55rem;
+  color: #434b57;
+  font-size: 0.95rem;
+  background: #fbfbfc;
 }
 
 @media (max-width: 900px) {

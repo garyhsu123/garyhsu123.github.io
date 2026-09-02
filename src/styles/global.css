@@ -642,6 +642,7 @@ main {
 .about-block {
   display: grid;
   gap: 1rem;
+  scroll-margin-top: 7rem;
 }
 
 .about-block + .about-block {

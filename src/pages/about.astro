@@ -29,7 +29,11 @@ const skillItems = profile.data.skills.flatMap((group) => group.items);
           {
             sections.map((section, index) => (
               <li>
-                <a class:list={[{ "is-current": index === 0 }]} href={`#${section.id}`}>
+                <a
+                  class:list={[{ "is-current": index === 0 }]}
+                  data-section-link={section.id}
+                  href={`#${section.id}`}
+                >
                   {section.label}
                 </a>
               </li>
@@ -114,4 +118,44 @@ const skillItems = profile.data.skills.flatMap((group) => group.items);
       </section>
     </div>
   </section>
+
+  <script>
+    const sectionLinks = Array.from(document.querySelectorAll("[data-section-link]"));
+    const sections = sectionLinks
+      .map((link) => {
+        const id = link.getAttribute("data-section-link");
+        return id ? document.getElementById(id) : null;
+      })
+      .filter(Boolean);
+
+    if (sectionLinks.length > 0 && sections.length > 0) {
+      const setActiveLink = (activeId) => {
+        sectionLinks.forEach((link) => {
+          link.classList.toggle("is-current", link.getAttribute("data-section-link") === activeId);
+        });
+      };
+
+      const updateActiveSection = () => {
+        const offset = 140;
+        const currentSection =
+          sections.findLast((section) => section.getBoundingClientRect().top - offset <= 0) ?? sections[0];
+
+        if (currentSection?.id) {
+          setActiveLink(currentSection.id);
+        }
+      };
+
+      sectionLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          const activeId = link.getAttribute("data-section-link");
+          if (activeId) {
+            setActiveLink(activeId);
+          }
+        });
+      });
+
+      updateActiveSection();
+      window.addEventListener("scroll", updateActiveSection, { passive: true });
+    }
+  </script>
 </BaseLayout>

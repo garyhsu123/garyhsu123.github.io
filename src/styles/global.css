@@ -145,8 +145,8 @@ main {
 }
 
 .hero h1 {
-  max-width: 18ch;
-  font-size: clamp(2.55rem, 5vw, 3.85rem);
+  max-width: none;
+  font-size: clamp(2.35rem, 4.15vw, 3.45rem);
 }
 
 .page-hero h1,
@@ -653,6 +653,10 @@ main {
     padding-top: 1.9rem;
   }
 
+  .hero h1 {
+    white-space: normal;
+  }
+
   .home-section {
     padding-top: 1.75rem;
   }
@@ -695,5 +699,11 @@ main {
 
   .site-footer__navs {
     gap: 2rem;
+  }
+}
+
+@media (min-width: 641px) {
+  .hero h1 {
+    white-space: nowrap;
   }
 }

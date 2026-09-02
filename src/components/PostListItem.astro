@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { withBase } from "../config/site";
+import { getReadingTimeMinutes } from "../utils/content";
 
 interface Props {
   post: CollectionEntry<"blog">;
@@ -8,6 +9,7 @@ interface Props {
 }
 
 const { post, variant = "list" } = Astro.props;
+const readingMinutes = getReadingTimeMinutes(post);
 ---
 
 <article class:list={["post-list-item", `post-list-item--${variant}`]}>
@@ -19,6 +21,7 @@ const { post, variant = "list" } = Astro.props;
         day: "numeric",
       })}
     </time>
+    {variant === "feature" ? ` / ${readingMinutes} min read` : null}
   </p>
 
   <h2 class="post-list-item__title">
@@ -27,4 +30,5 @@ const { post, variant = "list" } = Astro.props;
 
   {variant === "feature" ? <p class="post-list-item__summary">{post.data.summary}</p> : null}
   {variant === "feature" ? <a class="post-list-item__cta" href={withBase(`/blog/${post.id}/`)}>Read article →</a> : null}
+  {variant === "list" ? <p class="post-list-item__reading-time">{readingMinutes} min</p> : null}
 </article>

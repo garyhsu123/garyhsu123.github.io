@@ -20,3 +20,8 @@ export async function getLatestPost() {
   const posts = await getPublishedPosts();
   return posts[0];
 }
+
+export function getReadingTimeMinutes(post: CollectionEntry<"blog">) {
+  const wordCount = post.body.split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(wordCount / 200));
+}

@@ -5,8 +5,9 @@ export const SITE_DESCRIPTION =
 
 export function withBase(path = "/") {
   const base = import.meta.env.BASE_URL;
+  const normalizedBase = base.endsWith("/") ? base : `${base}/`;
   const normalizedPath = path === "/" ? "" : path.replace(/^\/+/, "");
-  return normalizedPath ? `${base}${normalizedPath}` : base;
+  return normalizedPath ? `${normalizedBase}${normalizedPath}` : normalizedBase;
 }
 
 export function absoluteUrl(path = "/") {

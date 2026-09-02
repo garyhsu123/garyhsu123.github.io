@@ -25,11 +25,11 @@ const readingMinutes = getReadingTimeMinutes(post);
     {variant === "feature" ? ` / ${readingMinutes} min read` : null}
   </p>
 
-  <h2 class="post-list-item__title">
-    <a href={withBase(`/blog/${post.id}/`)}>{post.data.title}</a>
-  </h2>
+  <a class="post-list-item__content-link" href={withBase(`/blog/${post.id}/`)}>
+    <h2 class="post-list-item__title">{post.data.title}</h2>
+    {variant === "feature" || showSummary ? <p class="post-list-item__summary">{post.data.summary}</p> : null}
+  </a>
 
-  {variant === "feature" || showSummary ? <p class="post-list-item__summary">{post.data.summary}</p> : null}
   {variant === "feature" ? <a class="post-list-item__cta" href={withBase(`/blog/${post.id}/`)}>Read article →</a> : null}
   {variant === "list" ? <p class="post-list-item__reading-time">{readingMinutes} min</p> : null}
 </article>

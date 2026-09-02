@@ -1,0 +1,25 @@
+{
+  "name": "ai-mysite",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Blog-first personal website built with Astro.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "keywords": [
+    "astro",
+    "blog",
+    "portfolio",
+    "static-site"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.2.10"
+  }
+}

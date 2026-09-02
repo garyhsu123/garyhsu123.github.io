@@ -4,26 +4,35 @@ import { getEntry } from "astro:content";
 
 const profile = await getEntry("about", "profile");
 const socialLinks = profile?.data.socialLinks ?? [];
+const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
   <div class="shell site-footer__inner">
-    <div>
-      <p class="site-footer__title">Write clearly. Ship deliberately.</p>
-      <p class="site-footer__body">
-        A small personal site for technical writing, selected work, and the reasoning behind implementation decisions.
-      </p>
+    <div class="site-footer__identity">
+      <p class="site-footer__title">{profile?.data.name ?? "Gary Hsu"}</p>
+      <p class="site-footer__body">Notes on building software.</p>
     </div>
 
-    <div class="site-footer__links">
-      <a href={withBase("/blog")}>Browse all posts</a>
-      {
-        socialLinks.map((link) => (
-          <a href={link.url} rel="noreferrer" target="_blank">
-            {link.label}
-          </a>
-        ))
-      }
+    <div class="site-footer__navs">
+      <div class="site-footer__column">
+        <p class="site-footer__label">Site</p>
+        <a href={withBase("/")}>Home</a>
+        <a href={withBase("/about")}>About</a>
+        <a href={withBase("/blog")}>Blog</a>
+      </div>
+
+      <div class="site-footer__column">
+        <p class="site-footer__label">Elsewhere</p>
+        {
+          socialLinks.map((link) => (
+            <a href={link.url} rel="noreferrer" target="_blank">
+              {link.label}
+            </a>
+          ))
+        }
+      </div>
     </div>
   </div>
+  <div class="shell site-footer__bottom">© {year} {profile?.data.name ?? "Gary Hsu"}. Built to be read.</div>
 </footer>

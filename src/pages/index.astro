@@ -3,73 +3,67 @@ import { getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PostListItem from "../components/PostListItem.astro";
 import { SITE_DESCRIPTION, SITE_TAGLINE, withBase } from "../config/site";
-import { getLatestPost } from "../utils/content";
+import { getPublishedPosts } from "../utils/content";
 
-const latestPost = await getLatestPost();
+const posts = await getPublishedPosts();
+const latestPost = posts[0];
+const morePosts = posts.slice(1, 4);
 const profile = await getEntry("about", "profile");
 const intro = profile?.data.intro;
+const socialLinks = profile?.data.socialLinks ?? [];
 ---
 
 <BaseLayout description={SITE_DESCRIPTION} path="/" title="Home">
   <section class="hero shell">
-    <p class="eyebrow">Tech notes by Gary Hsu</p>
+    <p class="eyebrow">{profile?.data.role ?? "Software Engineer"}</p>
     <h1>{intro?.headline ?? SITE_TAGLINE}</h1>
     <p class="hero__summary">
       {intro?.summary ??
         "A small site for practical software writing, implementation tradeoffs, and lessons from building."}
     </p>
-    <div class="hero__actions">
-      <a class="button button--primary" href={withBase("/blog")}>Read the blog</a>
-      <a class="button button--subtle" href={withBase("/about")}>About me</a>
+    <div class="hero__links">
+      <a class="hero__primary-link" href={withBase("/about")}>More about me</a>
+      {
+        socialLinks.map((link) => (
+          <a href={link.url} rel="noreferrer" target="_blank">
+            {link.label} ↗
+          </a>
+        ))
+      }
     </div>
   </section>
 
   <section class="shell section-stack">
     <div class="section-heading">
       <div>
-        <p class="eyebrow">Latest writing</p>
-        <h2>Start with the newest article</h2>
+        <p class="eyebrow">Latest article</p>
       </div>
-      <a class="text-link" href={withBase("/blog")}>See all posts</a>
+      <a class="text-link" href={withBase("/blog")}>All posts →</a>
     </div>
 
     {
       latestPost ? (
-        <PostListItem compact={true} post={latestPost} />
+        <PostListItem post={latestPost} variant="feature" />
       ) : (
         <article class="empty-panel">
-          <p class="eyebrow">Coming soon</p>
-          <h3>Articles are on the way.</h3>
-          <p>
-            The site is live, but the writing archive is still growing. Check back soon for practical notes on
-            technical decisions, implementation tradeoffs, and lessons from building.
-          </p>
+          <p>Articles are on the way. The archive is still small, but new technical notes will appear here soon.</p>
         </article>
       )
     }
   </section>
 
-  <section class="shell section-stack">
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">Short about</p>
-        <h2>Compact context behind the writing</h2>
-      </div>
-      <a class="text-link" href={withBase("/about")}>View full profile</a>
-    </div>
-
-    <div class="about-teaser">
-      <div>
-        <p>
-          {intro?.summary ??
-            "I write to clarify engineering choices, document what works, and share practical lessons that others can reuse."}
-        </p>
-      </div>
-      <ul class="about-teaser__facts">
-        <li>{profile?.data.role ?? "Software Engineer"}</li>
-        {intro?.location ? <li>{intro.location}</li> : null}
-        <li>Blog-first personal site</li>
-      </ul>
-    </div>
-  </section>
+  {
+    morePosts.length > 0 ? (
+      <section class="shell section-stack">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">More writing</p>
+          </div>
+        </div>
+        <div class="post-list">
+          {morePosts.map((post) => <PostListItem post={post} variant="list" />)}
+        </div>
+      </section>
+    ) : null
+  }
 </BaseLayout>

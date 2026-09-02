@@ -4,13 +4,13 @@ import { withBase } from "../config/site";
 
 interface Props {
   post: CollectionEntry<"blog">;
-  compact?: boolean;
+  variant?: "feature" | "list";
 }
 
-const { post, compact = false } = Astro.props;
+const { post, variant = "list" } = Astro.props;
 ---
 
-<article class:list={["post-list-item", { "post-list-item--compact": compact }]}>
+<article class:list={["post-list-item", `post-list-item--${variant}`]}>
   <p class="post-list-item__meta">
     <time datetime={post.data.publishDate.toISOString()}>
       {post.data.publishDate.toLocaleDateString("en-US", {
@@ -25,7 +25,6 @@ const { post, compact = false } = Astro.props;
     <a href={withBase(`/blog/${post.id}/`)}>{post.data.title}</a>
   </h2>
 
-  <p class:list={["post-list-item__summary", { "u-line-clamp": compact }]}>
-    {post.data.summary}
-  </p>
+  {variant === "feature" ? <p class="post-list-item__summary">{post.data.summary}</p> : null}
+  {variant === "feature" ? <a class="post-list-item__cta" href={withBase(`/blog/${post.id}/`)}>Read article →</a> : null}
 </article>

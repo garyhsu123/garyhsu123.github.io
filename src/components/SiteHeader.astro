@@ -8,13 +8,18 @@ const navItems = [
 ];
 
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const initials = SITE_TITLE
+  .split(" ")
+  .slice(0, 2)
+  .map((part) => part[0]?.toLowerCase() ?? "")
+  .join("");
 ---
 
 <header class="site-header">
   <div class="shell site-header__inner">
     <a class="site-header__brand" href={withBase("/")}>
+      <span class="site-header__mark" aria-hidden="true">{initials}</span>
       <span class="site-header__name">{SITE_TITLE}</span>
-      <span class="site-header__tag">Notebook</span>
     </a>
 
     <nav aria-label="Primary">

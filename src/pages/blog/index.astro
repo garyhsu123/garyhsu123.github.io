@@ -18,15 +18,10 @@ const posts = await getPublishedPosts();
   <section class="shell section-stack">
     {
       posts.length > 0 ? (
-        posts.map((post) => <PostListItem post={post} />)
+        <div class="post-list">{posts.map((post) => <PostListItem post={post} variant="list" />)}</div>
       ) : (
         <article class="empty-panel">
-          <p class="eyebrow">No posts yet</p>
-          <h2>The archive is still starting.</h2>
-          <p>
-            The writing pipeline is in place, but no published articles are available yet. Check back soon for new
-            notes.
-          </p>
+          <p>The writing pipeline is in place, but no published articles are available yet. Check back soon.</p>
         </article>
       )
     }

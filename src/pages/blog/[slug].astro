@@ -2,7 +2,7 @@
 import { render, type CollectionEntry, getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { withBase } from "../../config/site";
-import { getPublishedPosts, isPublishedPost } from "../../utils/content";
+import { getPublishedPosts, getReadingTimeMinutes, isPublishedPost } from "../../utils/content";
 
 export async function getStaticPaths() {
   const posts = await getPublishedPosts();
@@ -26,6 +26,7 @@ const posts = allPosts.filter(isPublishedPost).sort((left, right) => {
 const currentIndex = posts.findIndex((item) => item.id === post.id);
 const previousPost = posts[currentIndex + 1];
 const nextPost = posts[currentIndex - 1];
+const readingTime = getReadingTimeMinutes(post);
 ---
 
 <BaseLayout
@@ -35,9 +36,9 @@ const nextPost = posts[currentIndex - 1];
   title={post.data.title}
 >
   <section class="shell article-shell">
+    <a class="article-back-link" href={withBase("/blog")}>← All posts</a>
+
     <div class="article-shell__header">
-      <p class="eyebrow">Article</p>
-      <h1>{post.data.title}</h1>
       <p class="article-shell__meta">
         <time datetime={post.data.publishDate.toISOString()}>
           {post.data.publishDate.toLocaleDateString("en-US", {
@@ -46,25 +47,38 @@ const nextPost = posts[currentIndex - 1];
             day: "numeric",
           })}
         </time>
+        <span aria-hidden="true">/</span>
+        <span>{readingTime} min read</span>
       </p>
+      <h1>{post.data.title}</h1>
       <p class="article-shell__summary">{post.data.summary}</p>
     </div>
 
     <div class="article-layout">
+      <article class="article-prose">
+        <Content />
+      </article>
+
       {
         showToc ? (
-          <aside class="article-toc">
+          <aside class="article-toc" aria-label="Table of contents">
             <p class="article-toc__title">On this page</p>
             <ul>
-              {headings.map((heading) => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}
+              {headings.map((heading, index) => (
+                <li>
+                  <a
+                    class:list={[{ "is-current": index === 0 }]}
+                    data-toc-link={heading.slug}
+                    href={`#${heading.slug}`}
+                  >
+                    {heading.text}
+                  </a>
+                </li>
+              ))}
             </ul>
           </aside>
         ) : null
       }
-
-      <article class="article-prose">
-        <Content />
-      </article>
     </div>
 
     <section class="author-panel">
@@ -84,4 +98,101 @@ const nextPost = posts[currentIndex - 1];
       {nextPost ? <a href={withBase(`/blog/${nextPost.id}/`)}>{nextPost.data.title} →</a> : <span />}
     </nav>
   </section>
+
+  <script>
+    const tocLinks = Array.from(document.querySelectorAll("[data-toc-link]"));
+    const articleSections = tocLinks
+      .map((link) => {
+        const id = link.getAttribute("data-toc-link");
+        return id ? document.getElementById(id) : null;
+      })
+      .filter(Boolean);
+
+    if (tocLinks.length > 0 && articleSections.length > 0) {
+      let lockedSectionId = null;
+      let scrollEndTimer;
+      let scrollFrame;
+
+      const getScrollOffset = () => {
+        const header = document.querySelector(".site-header");
+        return (header?.getBoundingClientRect().height ?? 0) + 32;
+      };
+
+      const setActiveLink = (activeId) => {
+        tocLinks.forEach((link) => {
+          const isCurrent = link.getAttribute("data-toc-link") === activeId;
+          link.classList.toggle("is-current", isCurrent);
+          if (isCurrent) {
+            link.setAttribute("aria-current", "location");
+          } else {
+            link.removeAttribute("aria-current");
+          }
+        });
+      };
+
+      const updateActiveSection = () => {
+        if (lockedSectionId) {
+          setActiveLink(lockedSectionId);
+          return;
+        }
+
+        const offset = getScrollOffset();
+        const isAtPageEnd = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+        const currentSection = isAtPageEnd
+          ? articleSections.at(-1)
+          : articleSections.findLast((section) => section.getBoundingClientRect().top - offset <= 2) ??
+            articleSections[0];
+
+        if (currentSection?.id) {
+          setActiveLink(currentSection.id);
+        }
+      };
+
+      const clearLock = () => {
+        lockedSectionId = null;
+        window.clearTimeout(scrollEndTimer);
+        updateActiveSection();
+      };
+
+      const scheduleScrollEnd = () => {
+        window.clearTimeout(scrollEndTimer);
+        scrollEndTimer = window.setTimeout(clearLock, 140);
+      };
+
+      const handleScroll = () => {
+        window.cancelAnimationFrame(scrollFrame);
+        scrollFrame = window.requestAnimationFrame(updateActiveSection);
+        if (lockedSectionId) scheduleScrollEnd();
+      };
+
+      tocLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+          const activeId = link.getAttribute("data-toc-link");
+          const targetSection = activeId ? document.getElementById(activeId) : null;
+
+          if (!activeId || !targetSection) return;
+
+          event.preventDefault();
+          lockedSectionId = activeId;
+          setActiveLink(activeId);
+          window.history.replaceState(null, "", `#${activeId}`);
+
+          const targetTop = targetSection.getBoundingClientRect().top + window.scrollY - getScrollOffset();
+          window.scrollTo({
+            top: Math.max(0, targetTop),
+            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+          });
+          scheduleScrollEnd();
+        });
+      });
+
+      updateActiveSection();
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      window.addEventListener("scrollend", () => {
+        if (lockedSectionId) clearLock();
+      });
+      window.addEventListener("wheel", clearLock, { passive: true });
+      window.addEventListener("touchstart", clearLock, { passive: true });
+    }
+  </script>
 </BaseLayout>

@@ -148,7 +148,7 @@ main {
 }
 
 .hero h1 {
-  max-width: 15ch;
+  max-width: none;
   font-size: clamp(2.35rem, 4.15vw, 3.45rem);
   overflow-wrap: anywhere;
 }

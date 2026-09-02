@@ -288,6 +288,14 @@ main {
   border-radius: 0.9rem;
 }
 
+.post-list-item--feature .post-list-item__title a,
+.post-list-item--feature .post-list-item__summary {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .post-list-item--list {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;

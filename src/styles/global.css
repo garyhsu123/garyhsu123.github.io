@@ -46,7 +46,7 @@ img {
 main {
   display: grid;
   gap: 4.5rem;
-  padding: 0 0 5rem;
+  padding: 5.5rem 0 5rem;
 }
 
 .site-frame {
@@ -68,8 +68,10 @@ main {
 }
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 20;
   border-bottom: 1px solid var(--border);
   background: var(--surface);
@@ -738,14 +740,11 @@ main {
 @media (max-width: 640px) {
   main {
     gap: 4rem;
+    padding-top: 5rem;
   }
 
   .shell {
     width: min(calc(100% - 1.2rem), var(--shell));
-  }
-
-  .site-header {
-    padding-top: 0.6rem;
   }
 
   .site-header__inner {

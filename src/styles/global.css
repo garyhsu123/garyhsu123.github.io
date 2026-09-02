@@ -173,8 +173,8 @@ main {
   flex-wrap: wrap;
   gap: 0.9rem 1.7rem;
   margin-top: 1.8rem;
-  padding-bottom: 3rem;
-  border-bottom: 1px solid var(--border);
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 
 .hero__links a,
@@ -202,11 +202,25 @@ main {
   gap: 1.1rem;
 }
 
+.home-section {
+  padding-top: 2.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.home-section--intro {
+  padding-top: 2.75rem;
+  border-top: 0;
+}
+
 .section-heading {
   display: flex;
   align-items: end;
   justify-content: space-between;
   gap: 1rem;
+}
+
+.section-heading .eyebrow {
+  margin-bottom: 0;
 }
 
 .text-link {
@@ -626,6 +640,14 @@ main {
   .page-hero,
   .not-found {
     padding-top: 1.9rem;
+  }
+
+  .home-section {
+    padding-top: 1.75rem;
+  }
+
+  .home-section--intro {
+    padding-top: 2rem;
   }
 
   .post-list-item,

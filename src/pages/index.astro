@@ -14,7 +14,7 @@ const socialLinks = profile?.data.socialLinks ?? [];
 ---
 
 <BaseLayout description={SITE_DESCRIPTION} path="/" title="Home">
-  <section class="hero shell">
+  <section class="hero shell home-section home-section--intro">
     <p class="eyebrow">{profile?.data.role ?? "Software Engineer"}</p>
     <h1>{intro?.headline ?? SITE_TAGLINE}</h1>
     <p class="hero__summary">
@@ -33,11 +33,9 @@ const socialLinks = profile?.data.socialLinks ?? [];
     </div>
   </section>
 
-  <section class="shell section-stack">
+  <section class="shell section-stack home-section">
     <div class="section-heading">
-      <div>
-        <p class="eyebrow">Latest article</p>
-      </div>
+      <p class="eyebrow">Latest article</p>
       <a class="text-link" href={withBase("/blog")}>All posts →</a>
     </div>
 
@@ -56,9 +54,7 @@ const socialLinks = profile?.data.socialLinks ?? [];
     morePosts.length > 0 ? (
       <section class="shell section-stack">
         <div class="section-heading">
-          <div>
-            <p class="eyebrow">More writing</p>
-          </div>
+          <p class="eyebrow">More writing</p>
         </div>
         <div class="post-list">
           {morePosts.map((post) => <PostListItem post={post} variant="list" />)}

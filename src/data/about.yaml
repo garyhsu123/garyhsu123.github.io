@@ -1,0 +1,63 @@
+profile:
+  name: Gary Hsu
+  role: Software Engineer
+  intro:
+    headline: Building practical software and writing down the thinking behind it.
+    summary: I write about engineering decisions, implementation tradeoffs, and lessons learned while building real products. I care about clear thinking, maintainable systems, and making technical ideas easier to understand.
+    location: Edmonton, Canada
+  experience:
+    - company: Independent and product-focused work
+      role: Software Engineer
+      period: 2023 - Present
+      summary: Building and refining product experiences across mobile and web projects, with a focus on pragmatic implementation, performance, and clarity.
+    - company: Application and platform development
+      role: Full-Stack Developer
+      period: 2020 - 2023
+      summary: Worked across frontend, backend, and product requirements, translating technical constraints into shippable features and cleaner user experiences.
+  projects:
+    - title: CELPIP Speaking Timer
+      context: An iOS app focused on spoken-practice workflows, recording review, and offline-friendly preparation for CELPIP speaking tasks.
+      accent: sand
+      links:
+        - label: GitHub
+          url: https://github.com/example/celpip-speaking-timer
+    - title: Personal Website V1
+      context: A blog-first personal website built to publish technical writing, clarify ideas through articles, and present a compact profile without overbuilding the product.
+      accent: sage
+      links:
+        - label: GitHub
+          url: https://github.com/example/ai-mysite
+    - title: Workflow and tooling experiments
+      context: Small projects exploring agent workflows, automation, and ways to make implementation and review loops more reliable.
+      accent: slate
+      links:
+        - label: GitHub
+          url: https://github.com/example/tooling-lab
+  education:
+    - school: University program
+      program: Computer Science or related technical study
+      period: Add your exact degree and dates
+  skills:
+    - category: Languages
+      items:
+        - TypeScript
+        - JavaScript
+        - Swift
+        - SQL
+    - category: Frontend
+      items:
+        - Astro
+        - React
+        - HTML
+        - CSS
+    - category: Platform and tooling
+      items:
+        - GitHub Actions
+        - Node.js
+        - Static site workflows
+        - Xcode
+  socialLinks:
+    - label: GitHub
+      url: https://github.com/example
+    - label: LinkedIn
+      url: https://www.linkedin.com/in/example/

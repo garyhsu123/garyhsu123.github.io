@@ -130,7 +130,6 @@ const skillItems = profile.data.skills.flatMap((group) => group.items);
 
     if (sectionLinks.length > 0 && sections.length > 0) {
       let lockedSectionId = null;
-      let releaseLockTimer = null;
 
       const setActiveLink = (activeId) => {
         sectionLinks.forEach((link) => {
@@ -140,10 +139,6 @@ const skillItems = profile.data.skills.flatMap((group) => group.items);
 
       const clearLock = () => {
         lockedSectionId = null;
-        if (releaseLockTimer) {
-          window.clearTimeout(releaseLockTimer);
-          releaseLockTimer = null;
-        }
       };
 
       const updateActiveSection = () => {
@@ -153,7 +148,7 @@ const skillItems = profile.data.skills.flatMap((group) => group.items);
           const lockedSection = sections.find((section) => section.id === lockedSectionId);
           const lockedTop = lockedSection?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
 
-          if (Math.abs(lockedTop - offset) <= 12) {
+          if (Math.abs(lockedTop - offset) <= 12 || lockedTop < offset) {
             clearLock();
           } else {
             setActiveLink(lockedSectionId);
@@ -170,18 +165,16 @@ const skillItems = profile.data.skills.flatMap((group) => group.items);
       };
 
       sectionLinks.forEach((link) => {
-        link.addEventListener("click", () => {
+        link.addEventListener("click", (event) => {
           const activeId = link.getAttribute("data-section-link");
-          if (activeId) {
+          const targetSection = activeId ? document.getElementById(activeId) : null;
+
+          if (activeId && targetSection) {
+            event.preventDefault();
             lockedSectionId = activeId;
-            if (releaseLockTimer) {
-              window.clearTimeout(releaseLockTimer);
-            }
-            releaseLockTimer = window.setTimeout(() => {
-              clearLock();
-              updateActiveSection();
-            }, 900);
             setActiveLink(activeId);
+            targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
+            window.history.replaceState(null, "", `#${activeId}`);
           }
         });
       });

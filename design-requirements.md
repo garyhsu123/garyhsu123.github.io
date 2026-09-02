@@ -2,29 +2,26 @@
 
 Date: 2026-09-02
 
-## Project Summary
+## Purpose
 
-Design a static personal website for GitHub Pages. This is a blog-first personal site for general readers. The website should help visitors quickly discover and read my latest article, while also giving them a compact view of who I am, my experience, selected projects, education, and skills.
+Create UI concepts for a personal website that is primarily a tech blog for general readers, with a compact supporting profile section about me. This is a blog-first site, not a portfolio-first site.
 
-This is a first-version product. The design should be clean, modern, readable, and intentionally limited in scope.
+This document is for UI and UX concept generation only. Technical implementation details are intentionally separate and should not drive the design concepts unless they affect user experience directly.
 
-Technical implementation details, stack assumptions, deployment constraints, and content structure rules are maintained separately in `implementation-requirements.md`. This document should stay focused on UI and UX concepts.
+## Product Summary
 
-## Primary Goal
+The website should help visitors:
 
-The main user action for v1 is:
+1. Discover and read my writing easily
+2. Understand who I am and what I work on
 
-- Read my latest article
+The site should feel like a credible, modern, content-first personal website with strong reading comfort and clean organization.
 
-The site should also support a secondary goal:
-
-- Help readers understand who I am and what I build
-
-## Intended Audience
+## Primary Audience
 
 Primary audience:
 
-- General readers interested in tech thoughts, explanations, and practical knowledge
+- General readers interested in practical technical articles and thought process
 
 Secondary audience:
 
@@ -32,125 +29,139 @@ Secondary audience:
 - Hiring managers
 - Potential collaborators
 
+## Primary User Goal
+
+The most important user action in v1 is:
+
+- Read my latest article
+
+Secondary user goal:
+
+- Learn about me through a compact, scannable About page
+
 ## Product Positioning
 
 This site should feel like:
 
-- A credible tech blog
-- A personal space with thoughtful writing
-- A clean professional profile, without feeling like a corporate resume site
+- A thoughtful tech blog
+- A personal but professional online presence
+- A calm, readable, well-organized space
 
 It should not feel like:
 
 - A startup landing page
-- A template-heavy portfolio
+- A resume website with heavy corporate styling
+- A generic template portfolio
 - A visually noisy personal homepage
 
-## Platform Constraints
+## Scope For UI Concepts
 
-- Static website only
-- Responsive on mobile, tablet, and desktop
-- Realistic to implement as a lightweight static site
+The design concepts should assume these pages exist in v1:
 
-## Confirmed V1 Scope
+- Home
+- About
+- Blog index
+- Blog article
+- Simple 404 page
 
-The design concepts should assume the site includes:
-
-- Home page
-- About page
-- Blog index page
-- Blog article page
-
-The design concepts should assume the site does not include:
+The design concepts should assume these are out of scope for v1:
 
 - Separate project detail pages
 - Search UI
-- Tags or categories
+- Tag or category UI
 - Newsletter signup
 - Comments
 - Contact form
 - Dark mode
-- Advanced interactive features
+- Complex animations
 
 ## Navigation
 
-Primary navigation for v1 should stay small:
+Global navigation should stay minimal:
 
 - Home
 - About
 - Blog
 
-The `About` page itself can contain section anchors internally, but those anchors should not be part of the main global navigation.
+The `About` page can use internal section anchors, but those anchors should not appear in the global top navigation.
 
-## Design Direction
+## Overall Design Direction
 
-The UI should aim for:
+The visual direction should be:
 
-- Excellent readability
-- Clean organization
-- Comfortable spacing and alignment
-- Modern but understated styling
-- Strong typography for long-form reading
+- Clean
+- Current
+- Easy to read
+- Comfortable in spacing and alignment
 - Light theme only
+- Minimal without feeling empty
 
 Tone should feel:
 
 - Calm
-- Clear
 - Thoughtful
 - Practical
+- Clear
 
 Avoid:
 
-- Obvious template aesthetics
-- Overly decorative visual effects
-- Dense layouts
-- Dark or moody direction
-- Heavy motion
+- Heavy gradients or flashy startup patterns
+- Overly decorative components
+- Cramped content layouts
+- Outdated visual treatment
+- Dark, moody direction
 
-## Visual Direction Guidance
+## Visual Exploration Guidance
 
-Please explore 2 to 3 distinct visual concepts within this overall direction. The concepts should stay inside the same product boundary, but vary in style.
+Please explore 2 to 3 distinct UI directions within this same product boundary.
 
-Possible directions:
+Suggested directions to explore:
 
 - Editorial and typography-forward
 - Minimal and technical
-- Warm and approachable while still clean
+- Warm and approachable while still structured
 
-In all directions, prioritize:
+Each concept should still prioritize:
 
 - Reading comfort
-- Strong layout rhythm
 - Clear content hierarchy
-- Polished but implementable UI
+- Good spacing rhythm
+- Implementable layouts for a static content-first site
 
 ## Home Page Requirements
 
-Purpose:
+### Purpose
 
-- Lead with the latest article
 - Establish the site as a tech blog first
-- Give a small amount of personal context
-- Encourage browsing more articles
+- Help users notice the latest article quickly
+- Provide a short personal introduction
+- Give a path to browse more writing
 
-Required sections:
+### Required content
 
-1. Latest article feature as the top priority
-2. Short about section below it
-3. Link or preview path to browse more posts
-4. Footer with external social/profile links
+- Short intro about me near the top
+- Latest article section when a published article exists
+- Clean empty state when no article exists yet
+- Link to browse all blog posts
+- Footer with external links
 
-Homepage should not feel like a generic hero-first marketing page. The latest article should be the visual and informational focal point.
+### UX expectations
+
+- The latest article should be prominent when it exists, but the page should still work well when there are very few posts
+- The page should not depend on a large content library to look complete
+- The layout should feel content-first, not hero-marketing-first
+- The latest article preview should stay compact rather than oversized
 
 ## About Page Requirements
 
-Purpose:
+### Purpose
 
-- Present a compact, scannable profile page
+- Give readers a quick, scannable understanding of who I am
 - Support the blog without competing with it
 
-This page should be a single page with internal anchor navigation or anchor links for sections.
+### Page structure
+
+This should be a single page with local anchor navigation or jump links.
 
 Required section order:
 
@@ -161,94 +172,109 @@ Required section order:
 5. Skills
 6. Social links
 
-Behavior and content expectations:
+### UX expectations
 
 - Keep the page compact and easy to scan
-- Avoid long narrative biography blocks
-- Use clear section separation and anchor-friendly layout
+- Use clear section boundaries
+- Avoid long biography-style paragraphs
+- Make anchors feel useful but lightweight
 
-## Projects Section Requirements
+## Curated Projects Section Requirements
 
 Projects live inside the `About` page in v1.
 
-Project section expectations:
+Each project card or entry should support:
 
-- Show a curated set only, not a full archive
-- Each project card should include:
-  - Project name
-  - Short context or explanation
-  - External links such as GitHub or demo
-- Cards may use:
-  - Real image
-  - Placeholder visual
-  - Text-first treatment with background color or simple surface styling
+- Project name
+- Short context or explanation
+- External links such as GitHub or demo
+- Optional visual treatment
 
-The design must work even if some projects do not have strong visuals.
+Visual treatment may be:
+
+- A real image
+- A placeholder visual
+- A text-first card with background color or surface styling
+
+The design must work well even if some or most projects have no strong visuals.
 
 ## Blog Index Page Requirements
 
-Purpose:
+### Purpose
 
-- Help readers browse articles simply
-- Keep the experience focused on reading, not filtering
+- Help users browse published writing simply
+- Keep attention on content, not controls
 
-Content shown per post:
+### Content shown per post
 
 - Title
 - Publish date
 - Short summary
 
-Behavior expectations:
+### UX expectations
 
-- Chronological list
-- No search in v1
-- No tags, categories, or filters in v1
-- Layout should leave conceptual room for future search, but should not visually overbuild for it now
+- Chronological list presentation
+- No search or filters shown in v1
+- Comfortable scanning for readers
+- Enough structure that future search could be added later without redesigning the whole page
 
 ## Blog Article Page Requirements
 
-Purpose:
+### Purpose
 
 - Deliver a strong long-form reading experience
 
-Required content:
+### Required content
 
-- Title
+- Article title
 - Publish date
 - Article body
-- Code blocks as a first-class content type
-- Light author context near the end or side
+- Code blocks
+- Light author context
 - External social/profile links
 
-Optional behavior:
+### Optional content
 
-- Table of contents for longer posts only
+- Table of contents for longer posts
 
-UI expectations:
+### UX expectations
 
 - Comfortable reading width
-- Clear heading hierarchy
-- Good spacing for paragraphs and lists
-- Strong styling for code blocks, inline code, quotes, and links
-- Layout should support text-heavy articles with minimal visual assets
+- Strong typography hierarchy
+- Good paragraph spacing
+- High-quality treatment for code blocks, inline code, quotes, links, and lists
+- Layout should support text-heavy technical writing with minimal imagery
+- Author context should stay secondary to the article body
 
-## Content Assumptions
+## Empty State Expectations
+
+The design should explicitly consider low-content early-stage states.
+
+Required empty states:
+
+- Homepage with no published posts yet
+- Blog index with no published posts yet
+
+These empty states should still feel intentional and polished, not broken or unfinished.
+
+## Content Assumptions For Design
 
 The design should assume:
 
-- Blog content is text-first and Markdown-authored
-- Articles may include code blocks and technical explanations
-- Project cards may have uneven visual coverage
-- Some project cards may rely on typography, spacing, and surface treatment more than imagery
+- Articles are text-first
+- Code blocks are an important content type
+- Visual assets may be limited
+- The site may launch with only a small number of published posts
+- Projects may be stronger in explanation than imagery
 
 ## Accessibility Expectations
 
 - Strong contrast in light theme
-- Comfortable text sizes on all screen sizes
-- Clear link and focus states
-- Navigation remains usable on mobile
-- Meaning should not rely on color only
-- Article code blocks should remain readable and scroll gracefully on small screens
+- Readable text sizes on mobile and desktop
+- Clear visual focus states
+- Link styling that is obvious and usable
+- Article code blocks that remain readable on smaller screens
+- Layout hierarchy that remains clear without relying only on color
 
 ## Responsive Expectations
 
@@ -257,6 +283,54 @@ The concepts must work well on:
 - Mobile
 - Tablet
 - Desktop
+
+Responsive priorities:
+
+- Homepage should still feel complete with limited content
+- Latest article preview should remain clear on mobile
+- About page sections should stay easy to scan when stacked
+- Project entries should work with and without imagery
+- Blog article layouts should stay comfortable on narrow screens
+
+## Components And Patterns To Explore
+
+Please include UI concepts for:
+
+- Global header and navigation
+- Intro block on the homepage
+- Latest article preview block
+- Empty-state treatment for no posts yet
+- Blog post list item
+- About page anchor navigation or jump links
+- Project card or project row
+- Social links area
+- Footer
+- Article body styling
+- Code block styling
+- Optional table of contents pattern
+- Simple 404 page treatment
+
+## Deliverables Requested From The Design Tool
+
+Please generate:
+
+1. Two or three distinct UI concepts for the full site direction
+2. Desktop and mobile concepts for the homepage
+3. An About page concept with anchor-based sections
+4. A blog index page concept
+5. A blog article page concept optimized for text and code blocks
+6. A simple 404 page concept
+7. A short rationale for each concept, including typography, spacing, hierarchy, and overall visual tone
+
+## Success Criteria
+
+The resulting concepts should:
+
+- Make the site clearly feel blog-first
+- Support a strong reading experience for technical writing
+- Work well even with limited initial content
+- Present me clearly without turning the site into a portfolio-heavy experience
+- Feel modern, clean, and comfortable rather than flashy or generic
 
 Important responsive priorities:
 

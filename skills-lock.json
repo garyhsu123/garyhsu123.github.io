@@ -6,6 +6,12 @@
       "sourceType": "github",
       "skillPath": "skills/productivity/grill-me/SKILL.md",
       "computedHash": "9cdbb4b8f7a3aeaef82e6230c9e823500d4a8a1214c726cf342cf9829d34fc7d"
+    },
+    "ui-ux": {
+      "source": "atuizz/codex-ui-ux-skill",
+      "sourceType": "github",
+      "skillPath": "ui-ux/SKILL.md",
+      "computedHash": "b0036c59ae1246c487eee938f5c30136efa2513406a384f67045cbc12360f4da"
     }
   }
 }

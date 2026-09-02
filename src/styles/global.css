@@ -51,7 +51,6 @@ main {
 
 .site-frame {
   min-height: 100vh;
-  overflow-x: clip;
 }
 
 .shell {

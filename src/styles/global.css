@@ -596,9 +596,7 @@ main {
 }
 
 .about-layout {
-  display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
-  gap: 4rem;
+  position: relative;
   padding-top: 2rem;
 }
 
@@ -633,6 +631,7 @@ main {
 .about-content {
   display: grid;
   gap: 3rem;
+  margin-left: 300px;
 }
 
 .about-block {
@@ -726,6 +725,10 @@ main {
     top: auto;
     left: auto;
     width: auto;
+  }
+
+  .about-content {
+    margin-left: 0;
   }
 }
 

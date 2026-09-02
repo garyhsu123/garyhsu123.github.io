@@ -603,10 +603,10 @@ main {
 }
 
 .about-sidebar {
-  position: sticky;
-  top: 7rem;
-  height: fit-content;
-  align-self: start;
+  position: fixed;
+  top: 8.5rem;
+  left: max(calc((100vw - var(--shell)) / 2), 1rem);
+  width: 220px;
 }
 
 .about-sidebar__nav {
@@ -723,6 +723,9 @@ main {
 
   .about-sidebar {
     position: static;
+    top: auto;
+    left: auto;
+    width: auto;
   }
 }
 

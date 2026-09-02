@@ -129,14 +129,38 @@ const skillItems = profile.data.skills.flatMap((group) => group.items);
       .filter(Boolean);
 
     if (sectionLinks.length > 0 && sections.length > 0) {
+      let lockedSectionId = null;
+      let releaseLockTimer = null;
+
       const setActiveLink = (activeId) => {
         sectionLinks.forEach((link) => {
           link.classList.toggle("is-current", link.getAttribute("data-section-link") === activeId);
         });
       };
 
+      const clearLock = () => {
+        lockedSectionId = null;
+        if (releaseLockTimer) {
+          window.clearTimeout(releaseLockTimer);
+          releaseLockTimer = null;
+        }
+      };
+
       const updateActiveSection = () => {
         const offset = 140;
+
+        if (lockedSectionId) {
+          const lockedSection = sections.find((section) => section.id === lockedSectionId);
+          const lockedTop = lockedSection?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
+
+          if (Math.abs(lockedTop - offset) <= 12) {
+            clearLock();
+          } else {
+            setActiveLink(lockedSectionId);
+            return;
+          }
+        }
+
         const currentSection =
           sections.findLast((section) => section.getBoundingClientRect().top - offset <= 0) ?? sections[0];
 
@@ -149,6 +173,14 @@ const skillItems = profile.data.skills.flatMap((group) => group.items);
         link.addEventListener("click", () => {
           const activeId = link.getAttribute("data-section-link");
           if (activeId) {
+            lockedSectionId = activeId;
+            if (releaseLockTimer) {
+              window.clearTimeout(releaseLockTimer);
+            }
+            releaseLockTimer = window.setTimeout(() => {
+              clearLock();
+              updateActiveSection();
+            }, 900);
             setActiveLink(activeId);
           }
         });

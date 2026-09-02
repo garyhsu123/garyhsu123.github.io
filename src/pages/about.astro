@@ -130,6 +130,15 @@ const skillItems = profile.data.skills.flatMap((group) => group.items);
 
     if (sectionLinks.length > 0 && sections.length > 0) {
       let lockedSectionId = null;
+      let scrollEndTimer;
+      let scrollFrame;
+
+      const getScrollOffset = () => {
+        const header = document.querySelector(".site-header");
+        const headerHeight = header?.getBoundingClientRect().height ?? 0;
+
+        return headerHeight + 32;
+      };
 
       const setActiveLink = (activeId) => {
         sectionLinks.forEach((link) => {
@@ -139,28 +148,38 @@ const skillItems = profile.data.skills.flatMap((group) => group.items);
 
       const clearLock = () => {
         lockedSectionId = null;
+        window.clearTimeout(scrollEndTimer);
+        updateActiveSection();
       };
 
       const updateActiveSection = () => {
-        const offset = 140;
-
         if (lockedSectionId) {
-          const lockedSection = sections.find((section) => section.id === lockedSectionId);
-          const lockedTop = lockedSection?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
-
-          if (Math.abs(lockedTop - offset) <= 12 || lockedTop < offset) {
-            clearLock();
-          } else {
-            setActiveLink(lockedSectionId);
-            return;
-          }
+          setActiveLink(lockedSectionId);
+          return;
         }
 
-        const currentSection =
-          sections.findLast((section) => section.getBoundingClientRect().top - offset <= 0) ?? sections[0];
+        const offset = getScrollOffset();
+        const isAtPageEnd = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+        const currentSection = isAtPageEnd
+          ? sections.at(-1)
+          : sections.findLast((section) => section.getBoundingClientRect().top - offset <= 2) ?? sections[0];
 
         if (currentSection?.id) {
           setActiveLink(currentSection.id);
+        }
+      };
+
+      const scheduleScrollEnd = () => {
+        window.clearTimeout(scrollEndTimer);
+        scrollEndTimer = window.setTimeout(clearLock, 140);
+      };
+
+      const handleScroll = () => {
+        window.cancelAnimationFrame(scrollFrame);
+        scrollFrame = window.requestAnimationFrame(updateActiveSection);
+
+        if (lockedSectionId) {
+          scheduleScrollEnd();
         }
       };
 
@@ -173,14 +192,27 @@ const skillItems = profile.data.skills.flatMap((group) => group.items);
             event.preventDefault();
             lockedSectionId = activeId;
             setActiveLink(activeId);
-            targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
             window.history.replaceState(null, "", `#${activeId}`);
+
+            const targetTop = targetSection.getBoundingClientRect().top + window.scrollY - getScrollOffset();
+            window.scrollTo({
+              top: Math.max(0, targetTop),
+              behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+            });
+            scheduleScrollEnd();
           }
         });
       });
 
       updateActiveSection();
-      window.addEventListener("scroll", updateActiveSection, { passive: true });
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      window.addEventListener("scrollend", () => {
+        if (lockedSectionId) {
+          clearLock();
+        }
+      });
+      window.addEventListener("wheel", clearLock, { passive: true });
+      window.addEventListener("touchstart", clearLock, { passive: true });
     }
   </script>
 </BaseLayout>

@@ -35,7 +35,7 @@ const initials = SITE_TITLE
 
             return (
               <li>
-                <a class:list={[{ "is-active": isActive }]} href={href}>
+                <a aria-current={isActive ? "page" : undefined} class:list={[{ "is-active": isActive }]} href={href}>
                   {item.label}
                 </a>
               </li>

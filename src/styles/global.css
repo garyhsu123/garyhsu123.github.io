@@ -258,13 +258,8 @@ main {
   font-weight: 500;
 }
 
-.post-list-item,
-.empty-panel,
-.timeline-item,
-.skill-panel,
-.author-panel,
-.article-toc,
-.jump-links {
+.post-list-item--feature,
+.empty-panel {
   border: 1px solid var(--border);
   background: var(--surface);
 }
@@ -361,7 +356,11 @@ main {
   align-items: start;
   gap: var(--space-1) var(--space-3);
   padding: var(--space-4) 0;
-  border-width: 0 0 1px;
+  border: 0;
+}
+
+.post-list > .post-list-item--list + .post-list-item--list {
+  border-top: 1px solid var(--border);
 }
 
 .post-list-item--list .post-list-item__meta {
@@ -403,7 +402,7 @@ main {
 
 .jump-links {
   padding: 0.7rem 0 1.25rem;
-  border-width: 0 0 1px;
+  border-bottom: 1px solid var(--border);
 }
 
 .jump-links ul {
@@ -432,7 +431,11 @@ main {
 .timeline-item,
 .skill-panel {
   padding: var(--space-4) 0;
-  border-width: 0 0 1px;
+}
+
+.stack-list > .timeline-item + .timeline-item,
+.stack-list > .skill-panel + .skill-panel {
+  border-top: 1px solid var(--border);
 }
 
 .timeline-item__header {
@@ -562,8 +565,6 @@ main {
 
 .article-prose {
   padding: 0;
-  border: 1px solid var(--border);
-  border-width: 0;
   background: transparent;
 }
 
@@ -670,7 +671,7 @@ main {
   display: grid;
   gap: 0.8rem;
   margin-top: var(--space-7);
-  border-width: 1px 0 0;
+  border-top: 1px solid var(--border);
 }
 
 .article-pagination {

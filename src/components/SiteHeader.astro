@@ -59,6 +59,10 @@ const initials = SITE_TITLE
   </div>
 </header>
 
+<script is:inline>
+  document.querySelector(".site-header")?.classList.add("is-menu-ready");
+</script>
+
 <script>
   const header = document.querySelector<HTMLElement>(".site-header");
   const menuButton = document.querySelector<HTMLButtonElement>(".site-header__menu-button");

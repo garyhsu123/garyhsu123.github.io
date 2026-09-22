@@ -1,63 +1,79 @@
 profile:
-  name: Gary Hsu
+  name: Yu-Chun (Gary) Hsu
   role: Software Engineer
   intro:
     headline: Building practical software and writing down the thinking behind it.
-    summary: I write about engineering decisions, implementation tradeoffs, and lessons learned while building real products. I care about clear thinking, maintainable systems, and making technical ideas easier to understand.
-    location: Edmonton, Canada
+    summary: I am a Software Engineer with 5+ years of experience building production applications, specializing in mobile development with growing full-stack experience across TypeScript, Node.js, Python, and AWS.
+    location: Vancouver, BC
   experience:
-    - company: Independent and product-focused work
-      role: Software Engineer
-      period: 2023 - Present
-      summary: Building and refining product experiences across mobile and web projects, with a focus on pragmatic implementation, performance, and clarity.
-    - company: Application and platform development
-      role: Full-Stack Developer
-      period: 2020 - 2023
-      summary: Worked across frontend, backend, and product requirements, translating technical constraints into shippable features and cleaner user experiences.
+    - company: Richlink Technologies Inc.
+      role: Software Developer
+      period: Dec 2022 - Apr 2026
+      summary: Built media features spanning video delivery, real-time messaging, and voice communication. Reduced audio call signaling latency from 2.4 to 1.5 seconds, increased video preload hit rate by 18 percentage points, strengthened API security with certificate pinning, and reduced manual release steps from six to one through CI/CD automation.
+    - company: Perfect Corp.
+      role: iOS Developer
+      period: Jan 2020 - Feb 2022
+      summary: Owned social and monetization features for an iPhone and iPad beauty app. Reduced wait time for AI-powered photo results by 25%, redesigned an internal debug workflow from eight taps to one, and implemented server-validated subscription recovery prompts.
   projects:
-    - title: CELPIP Speaking Timer
-      context: An iOS app focused on spoken-practice workflows, recording review, and offline-friendly preparation for CELPIP speaking tasks.
+    - title: CELPIP Timer
+      context: A CELPIP speaking practice app with exam-aligned questions and timers, voice recording and playback, and note-taking. I owned the product from SwiftUI design through Node.js serverless APIs, AWS deployment, AI-assisted content workflows, and App Store release.
       accent: sand
       links:
         - label: GitHub
-          url: https://github.com/example/celpip-speaking-timer
-    - title: Personal Website V1
-      context: A blog-first personal website built to publish technical writing, clarify ideas through articles, and present a compact profile without overbuilding the product.
-      accent: sage
-      links:
-        - label: GitHub
-          url: https://github.com/example/ai-mysite
-    - title: Workflow and tooling experiments
-      context: Small projects exploring agent workflows, automation, and ways to make implementation and review loops more reliable.
-      accent: slate
-      links:
-        - label: GitHub
-          url: https://github.com/example/tooling-lab
+          url: https://github.com/garyhsu123/CELPIP-Timer
   education:
-    - school: University program
-      program: Computer Science or related technical study
-      period: Add your exact degree and dates
+    - school: National Chiao Tung University
+      program: Master of Science in Computer Engineering
+      period: 2017 - 2019
+    - school: National Chung Hsing University
+      program: Bachelor of Science in Computer Science
+      period: 2013 - 2017
   skills:
     - category: Languages
       items:
+        - Python
         - TypeScript
         - JavaScript
         - Swift
-        - SQL
-    - category: Frontend
+        - Objective-C
+    - category: Client and frontend
       items:
-        - Astro
-        - React
+        - React Native
+        - SwiftUI
+        - UIKit
         - HTML
         - CSS
-    - category: Platform and tooling
+    - category: Backend and APIs
       items:
-        - GitHub Actions
         - Node.js
-        - Static site workflows
+        - Express.js
+        - REST APIs
+        - WebSocket
+        - WebRTC
+    - category: Cloud and data
+      items:
+        - AWS Lambda
+        - API Gateway
+        - DynamoDB
+        - S3
+        - SQLite
+    - category: Testing and DevOps
+      items:
+        - XCTest
+        - CI/CD
+        - GitHub Actions
+        - SAM
+    - category: Tools
+      items:
+        - GitHub
+        - Proxyman
         - Xcode
+        - Codex
+        - n8n
   socialLinks:
     - label: GitHub
-      url: https://github.com/example
+      url: https://github.com/garyhsu123
     - label: LinkedIn
-      url: https://www.linkedin.com/in/example/
+      url: https://www.linkedin.com/in/garyhsuios/
+    - label: Email
+      url: mailto:chun52117@gmail.com

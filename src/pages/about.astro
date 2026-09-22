@@ -47,11 +47,12 @@ const skillItems = profile.data.skills.flatMap((group) => group.items);
       <section class="about-block" id="intro">
         <p class="eyebrow">About</p>
         <h1>{profile.data.name}</h1>
+        <p class="about-intro-meta">{profile.data.role} · {profile.data.intro.location}</p>
         <div class="about-copy">
           <p>{profile.data.intro.summary}</p>
           <p>
-            I care most about systems that stay predictable under pressure and tools that make other engineers faster.
-            I write here to think in public and keep my reasoning honest.
+            I focus on owning features end to end, improving performance and reliability, and turning product requirements
+            into maintainable solutions. I write here to share the engineering decisions and lessons behind that work.
           </p>
         </div>
       </section>

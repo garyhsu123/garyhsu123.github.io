@@ -852,6 +852,12 @@ main {
   line-height: 1.08;
 }
 
+.about-intro-meta {
+  margin: var(--space-2) 0 0;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
 .about-copy {
   display: grid;
   gap: var(--space-4);
